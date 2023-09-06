@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
+    [Header("Canvas")]
     [SerializeField] 
     private Canvas menu;
     [SerializeField] 
@@ -14,10 +16,17 @@ public class GameManager : MonoBehaviour
     [SerializeField] 
     private Canvas credits;
     
+    [Header("Pacman")]
     [SerializeField] 
     private PlayerManager pacman;
     [SerializeField]
     private Transform spawnTransform;
+
+    [Header("HUD")]
+    [SerializeField] 
+    private GameObject hearts;
+    [SerializeField] 
+    private TMP_Text scoreText;
 
     public int score;
     public int life;
@@ -67,11 +76,17 @@ public class GameManager : MonoBehaviour
         PlayerManager pacmanSpawned = Instantiate(pacman, spawnTransform.position, Quaternion.identity);
         pacmanSpawned.gameObject.SetActive(true);
     }
+
+    public void TakeDamage()
+    {
+        //if(hearts.transform.GetChildren()
+    }
     
     public void ScoreUp(int scoreAdded)
     {
+        Debug.Log("score up");
         score += scoreAdded;
-        //TODO UI
+        scoreText.text = "Score : \n" + score;
     }
 
 }

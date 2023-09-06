@@ -1051,6 +1051,8 @@ MonoBehaviour:
   credits: {fileID: 1543611155}
   pacman: {fileID: 311341721}
   spawnTransform: {fileID: 1512381909}
+  hearts: {fileID: 0}
+  scoreText: {fileID: 118096976}
   score: 0
   life: 3
 --- !u!1 &798001126

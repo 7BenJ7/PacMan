@@ -20,7 +20,10 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GameManager.Instance.ScoreUp(10);
+        }
     }
 
     public void TakeDamage()
