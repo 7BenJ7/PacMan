@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class GameManager : MonoBehaviour
     private Canvas hud;
     [SerializeField] 
     private Canvas credits;
-    
+
     [Header("Pacman")]
     [SerializeField] 
     private PlayerManager pacman;
@@ -25,6 +26,9 @@ public class GameManager : MonoBehaviour
     [Header("HUD")]
     [SerializeField] 
     private GameObject hearts;
+    private List<Image> _heartsList = new List<Image>();
+    [SerializeField] 
+    private Image heart;
     [SerializeField] 
     private TMP_Text scoreText;
 
@@ -46,10 +50,19 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
-        //TODO DIsparition menu
         menu.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
         hud.gameObject.SetActive(true);
+        
+        _heartsList.Clear();
+        for (int i = 0; i < 3; i++)
+        {
+            Image newHeart = Instantiate(heart, Vector3.zero, Quaternion.identity);
+            _heartsList.Add(newHeart);
+            newHeart.transform.SetParent(hearts.transform);
+            newHeart.gameObject.SetActive(true);
+        }
+        
         Spawn();
     }
 
@@ -62,12 +75,14 @@ public class GameManager : MonoBehaviour
     public void Credits()
     {
         menu.gameObject.SetActive(false);
+        hud.gameObject.SetActive(false);
         credits.gameObject.SetActive(true);
     }
 
     public void ReturnToMenu()
     {
         credits.gameObject.SetActive(false);
+        hud.gameObject.SetActive(false);
         menu.gameObject.SetActive(true);
     }
     
@@ -79,7 +94,24 @@ public class GameManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        //if(hearts.transform.GetChildren()
+        Debug.Log(_heartsList.Count);
+        if (_heartsList.Count > 1)
+        {
+            Destroy(_heartsList[^1].gameObject);
+            _heartsList.RemoveAt(_heartsList.Count-1);
+            //TODO Anim mort
+            Destroy(PlayerManager.Instance.gameObject);
+            StartCoroutine(RespawnCoroutine());
+        }
+
+        else
+        {
+            //TODO Anim mort
+            Destroy(_heartsList[^1].gameObject);
+
+            Destroy(PlayerManager.Instance.gameObject);
+            StartCoroutine(GameOver());
+        }
     }
     
     public void ScoreUp(int scoreAdded)
@@ -87,6 +119,19 @@ public class GameManager : MonoBehaviour
         Debug.Log("score up");
         score += scoreAdded;
         scoreText.text = "Score : \n" + score;
+    }
+
+    private IEnumerator RespawnCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+        Spawn();
+    }
+    
+    private IEnumerator GameOver()
+    {
+        yield return new WaitForSeconds(2f);
+        score = 0;
+        ReturnToMenu();
     }
 
 }
