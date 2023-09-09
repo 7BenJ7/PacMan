@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
     {
         hud.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
+        
+        AudioManager.Instance.PlayMusic("Menu", true);
     }
 
     public void StartGame()
@@ -63,7 +65,9 @@ public class GameManager : MonoBehaviour
             newHeart.gameObject.SetActive(true);
         }
         
-        Spawn();
+        AudioManager.Instance.StopMusic("Menu");
+        AudioManager.Instance.PlaySFX("Start");
+        StartCoroutine(StartGameCoroutine());
     }
 
     public void Quit()
@@ -95,6 +99,8 @@ public class GameManager : MonoBehaviour
     public void TakeDamage()
     {
         Debug.Log(_heartsList.Count);
+        AudioManager.Instance.PlaySFX("Mort");
+
         if (_heartsList.Count > 1)
         {
             Destroy(_heartsList[^1].gameObject);
@@ -110,7 +116,7 @@ public class GameManager : MonoBehaviour
             Destroy(_heartsList[^1].gameObject);
 
             Destroy(PlayerManager.Instance.gameObject);
-            StartCoroutine(GameOver());
+            StartCoroutine(DeathCoroutine());
         }
     }
     
@@ -121,17 +127,23 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score : \n" + score;
     }
 
-    private IEnumerator RespawnCoroutine()
+    private IEnumerator StartGameCoroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4.5f);
         Spawn();
     }
     
-    private IEnumerator GameOver()
+    private IEnumerator RespawnCoroutine()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(2);
+        Spawn();
+    }
+    
+    private IEnumerator DeathCoroutine()
+    {
+        yield return new WaitForSeconds(2);
         score = 0;
+        AudioManager.Instance.PlayMusic("Menu");
         ReturnToMenu();
     }
-
 }
