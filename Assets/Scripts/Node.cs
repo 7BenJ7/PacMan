@@ -25,7 +25,8 @@ public class Node : MonoBehaviour
 
     void CheckAvailableDirection(Vector2 direction)
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1.0f, obstacleLayer);
+       RaycastHit2D hit = Physics2D.BoxCast(transform.position, Vector2.one * 0.5f, 0f, direction, 1f, obstacleLayer);
+        Debug.DrawRay(transform.position, direction, Color.red, 100.0f);
         if (hit.collider == null)
         {
             availableDirections.Add(direction);
