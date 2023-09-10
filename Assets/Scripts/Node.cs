@@ -6,6 +6,7 @@ public class Node : MonoBehaviour
 {
     public LayerMask obstacleLayer;
     public List<Vector2> availableDirections;
+    public Vector2 pacamanDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -37,8 +38,12 @@ public class Node : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        Debug.Log("Trigger Node");
+        PacMan pacman = other.GetComponent<PacMan>();
+        if (pacman != null)
+        {
+            pacamanDirection = pacman.direction;
+        }
     }
 }
