@@ -102,7 +102,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -744393571
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 655d4440ed3bae64888da56be7c658db, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 1873079402494937719}
   - component: {fileID: 4295770025502687979}
   - component: {fileID: 9143616967975855624}
+  - component: {fileID: 1680789579186020419}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Untagged
@@ -210,7 +211,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1526477979
-  m_SortingLayer: 1
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: db7b77425d488074fae982cd16190d9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -318,6 +319,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 0}
   spriteResolver: {fileID: 0}
+  eyesSpriteResolver: {fileID: 0}
+  ghost: {fileID: 0}
   animationsDelay: 0.5
 --- !u!58 &4295770025502687979
 CircleCollider2D:
@@ -368,3 +371,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghost: {fileID: 927350339521218466}
   duration: 100
+--- !u!114 &1680789579186020419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365333950337654521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 63281cd3fb308f94baa630f93fb055bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: 200
+  canBeEat: 0
