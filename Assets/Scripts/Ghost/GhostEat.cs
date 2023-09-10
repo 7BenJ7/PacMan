@@ -25,10 +25,6 @@ public class GhostEat : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        else
-        {
-            Debug.Log("ERROR" + col.gameObject.name);
-        }
     }
 
    public void IsDamageable()
