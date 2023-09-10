@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GhostScatter : GhostBehaviour
 {
-    List<Vector2> newDirections;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +36,7 @@ public class GhostScatter : GhostBehaviour
 
     IEnumerator ChangeDirection()
     {
-        yield return new WaitForSeconds(0.37f);
+        yield return new WaitForSeconds(0.14f);
         ghost.SetDirection(newDirections[Random.Range(0, newDirections.Count)]); 
     }
 }

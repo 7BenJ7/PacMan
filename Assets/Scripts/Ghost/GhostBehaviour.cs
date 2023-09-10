@@ -4,6 +4,8 @@ using UnityEngine;
 
 public abstract class GhostBehaviour : MonoBehaviour
 {
+    public List<Vector2> newDirections;
+
     public GhostController ghost;
     public float duration;
 
@@ -30,6 +32,12 @@ public abstract class GhostBehaviour : MonoBehaviour
         enabled = false;
 
         CancelInvoke();
+    }
+
+    public IEnumerator ChangeDirection()
+    {
+        yield return new WaitForSeconds(0.05f);
+        ghost.SetDirection(newDirections[Random.Range(0, newDirections.Count)]); 
     }
 
 }

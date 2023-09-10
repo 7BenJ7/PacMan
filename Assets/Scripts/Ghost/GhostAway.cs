@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostChase : GhostBehaviour
+public class GhostAway : GhostBehaviour
 {
-    
     // Start is called before the first frame update
     void Start()
     {
@@ -18,13 +17,12 @@ public class GhostChase : GhostBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D other)
-    {   
-
+    {
         Node node = other.GetComponent<Node>();
         if (node != null)
         {
-
-            if (node.pacmanDirection == Vector2.zero)
+            Debug.Log("Triiiiiiiiigggerr");
+            if (node.pacmanDirectionEnter == Vector2.zero)
             {
                 newDirections = node.availableDirections;
                 if (newDirections.Count > 1)
@@ -35,8 +33,8 @@ public class GhostChase : GhostBehaviour
             else 
             {
                 newDirections = new List<Vector2>();
-                newDirections.Add(node.pacmanDirection);
-                node.pacmanDirection = Vector2.zero;
+                newDirections.Add(-node.pacmanDirectionEnter);
+                node.pacmanDirectionEnter = Vector2.zero;
             }
             
             StartCoroutine(ChangeDirection());
@@ -44,4 +42,6 @@ public class GhostChase : GhostBehaviour
         }
     }
 
+
 }
+
