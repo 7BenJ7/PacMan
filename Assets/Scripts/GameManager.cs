@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private Transform spawnTransform;
 
+    [Header("Fantomes")] 
+    public List<GhostController> fantomes;
+    
     [Header("HUD")]
     [SerializeField] 
     private GameObject hearts;

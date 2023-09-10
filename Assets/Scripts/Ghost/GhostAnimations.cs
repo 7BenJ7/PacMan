@@ -23,7 +23,7 @@ public class GhostAnimations : MonoBehaviour
         this.spriteResolver = GetComponent<UnityEngine.U2D.Animation.SpriteResolver>();
         this.eyesSpriteResolver = transform.GetChild(0).GetComponent<UnityEngine.U2D.Animation.SpriteResolver>();
         this.spriteState = true;
-        ghost = GetComponent<GhostController>();
+        ghost = GetComponentInParent<GhostController>();
         animationsTimer = 0;
     }
 

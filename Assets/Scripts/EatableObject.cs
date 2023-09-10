@@ -8,26 +8,26 @@ public class EatableObject : MonoBehaviour
     [SerializeField] 
     private int points;
 
-    public bool canBeEat = true;
+    [SerializeField] 
+    private bool isGomme = false;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.TryGetComponent(out PlayerManager pacman) && canBeEat)
+        if (col.TryGetComponent(out PlayerManager pacman))
         {
             GameManager.Instance.ScoreUp(points);
             Destroy(gameObject);
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (isGomme)
+        {
+            foreach(GhostController fantome in GameManager.Instance.fantomes)
+            {
+                fantome.GetComponent<GhostEat>().IsDamageable();
+            }
         }
     }
 }
