@@ -10,13 +10,17 @@ public class GhostEat : MonoBehaviour
     public bool _canBeEat = false;
     private GhostBehaviour ghostBehaviourScript;
     private GhostBehaviour ghostFleeScript;
+    private Color _color;
+    private bool _canBeEat = false;
 
     private void Start()
     {
+        _color = GetComponentInChildren<SpriteRenderer>().color;
         ghostBehaviourScript = GetComponent<GhostController>().ghostBehaviourScript;
         ghostFleeScript = GetComponent<GhostController>().ghostFleeScript;
     }
-   private void OnTriggerEnter2D(Collider2D col)
+
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.TryGetComponent(out PlayerManager pacman) )
         {
@@ -50,10 +54,10 @@ public class GhostEat : MonoBehaviour
 
         _canBeEat = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(5);
         ghostFleeScript.Disable();
         ghostBehaviourScript.Enable();
         _canBeEat = false;
-        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        GetComponentInChildren<SpriteRenderer>().color = _color;
     }
 }

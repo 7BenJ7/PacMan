@@ -10,6 +10,7 @@ public class AnimatedPacMan : MonoBehaviour
     public SpriteRenderer spriteRenderer { get; private set;}
     public Sprite[] sprites;
     public float time = 0.3f;
+    public bool isDead = false;
     public int frame {get; private set;}
 
 
@@ -22,16 +23,45 @@ public class AnimatedPacMan : MonoBehaviour
     }
 
     private void Animate(){
-        if (!this.spriteRenderer.enabled){
-            return;
-        }
+        if (!isDead)
+        {
+            if (!this.spriteRenderer.enabled)
+            {
+                return;
+            }
 
-        this.frame ++;
-        if (this.frame >= this.sprites.Length){
-            this.frame = 0;
+            this.frame++;
+            if (this.frame >= 3)
+            {
+                this.frame = 0;
+            }
+
+            if (this.frame >= 0 && this.frame < 3)
+            {
+                this.spriteRenderer.sprite = this.sprites[this.frame];
+            }
         }
-        if (this.frame >= 0 && this.frame < this.sprites.Length){
+        else
+        {
+            if (!this.spriteRenderer.enabled)
+            {
+                return;
+            }
+
+            if (this.frame == 13)
+            {
+                Destroy(this.transform.parent.gameObject);
+            }
+
+            this.frame++;
+            if (this.frame < 3)
+            {
+                this.frame = 3;
+            };
             this.spriteRenderer.sprite = this.sprites[this.frame];
+            
         }
     }
+    
+    
 }
