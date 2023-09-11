@@ -59,7 +59,6 @@ public class AudioManager : MonoBehaviour
 
         else
         {
-            Debug.Log(name + s.clip.name);
             if(s.clip == musicSource.clip)
             {
                 musicSource.Stop();

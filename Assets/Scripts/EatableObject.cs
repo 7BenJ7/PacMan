@@ -13,10 +13,16 @@ public class EatableObject : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("LIHBELVJSHNVHLIBNLKJRLIGUREB");
         if (col.TryGetComponent(out PlayerManager pacman))
         {
-            AudioManager.Instance.PlaySFX("Gomme");
+            if (isGomme)
+            {
+                AudioManager.Instance.PlaySFX("Gomme");
+            }
+            else
+            {
+                AudioManager.Instance.PlaySFX("Pastille");
+            }
             GameManager.Instance.ScoreUp(points);
             GameManager.Instance.GommeRestante();
             Destroy(gameObject);

@@ -72,7 +72,8 @@ public class GameManager : MonoBehaviour
 
    public void ReturnToMenu()
    {
-       SceneManager.LoadScene("Menu");
+       AudioManager.Instance.PlaySFX("Bouton");
+       StartCoroutine(ReturnButtonCoroutine());
    }
     
     public void Spawn()
@@ -94,28 +95,24 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log(_heartsList.Count);
         AudioManager.Instance.PlaySFX("Mort");
-
+        PlayerManager.Instance.gameObject.GetComponentInChildren<AnimatedPacMan>().isDead = true;
+        Destroy(_heartsList[^1].gameObject);
+        PlayerManager.Instance.GetComponent<PacMan>().speed = 0;
+        
         if (_heartsList.Count > 1)
         {
-            Destroy(_heartsList[^1].gameObject);
             _heartsList.RemoveAt(_heartsList.Count-1);
-            //TODO Anim mort
-            Destroy(PlayerManager.Instance.gameObject);
+            
             foreach (GhostController ghost in ghostInstances)
             {
                 Destroy(ghost.gameObject);
             }
-            PlayerManager.Instance.gameObject.GetComponentInChildren<AnimatedPacMan>().isDead = true;
 
             StartCoroutine(RespawnCoroutine());
         }
 
         else
         {
-            //TODO Anim mort
-            PlayerManager.Instance.gameObject.GetComponentInChildren<AnimatedPacMan>().isDead = true;
-            Destroy(_heartsList[^1].gameObject);
-
             StartCoroutine(DeathCoroutine());
         }
     }
@@ -161,10 +158,16 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2);
         looseScore.text = "Score : " + score;
         score = 0;
-        AudioManager.Instance.PlayMusic("Menu");
+        AudioManager.Instance.PlayMusic("Menu", true);
         
         hud.gameObject.SetActive(false);
         gameOver.gameObject.SetActive(true);
         win.gameObject.SetActive(false);
+    }
+    
+    private IEnumerator ReturnButtonCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Menu");
     }
 }

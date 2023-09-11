@@ -36,25 +36,39 @@ public class Menu : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene("Martin2");
+        AudioManager.Instance.PlaySFX("Bouton");
+        StartCoroutine(StartButtonCoroutine());
     }
 
     public void Quit()
     {
-        Debug.Log("quit");
-        Application.Quit();
+        AudioManager.Instance.PlaySFX("Bouton");
+        StartCoroutine(QuitButtonCoroutine());
     }
 
     public void Credits()
     {
+        AudioManager.Instance.PlaySFX("Bouton");
         menu.gameObject.SetActive(false);
         credits.gameObject.SetActive(true);
     }
 
     public void ReturnToMenu()
     {
+        AudioManager.Instance.PlaySFX("Bouton");
         credits.gameObject.SetActive(false);
         menu.gameObject.SetActive(true);
     }
+
+    private IEnumerator StartButtonCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        SceneManager.LoadScene("Main");
+    }
     
+    private IEnumerator QuitButtonCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Application.Quit();
+    }
 }
