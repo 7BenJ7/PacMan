@@ -54,7 +54,7 @@ public class GhostEat : MonoBehaviour
 
         _canBeEat = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(10);
         ghostFleeScript.Disable();
         ghostBehaviourScript.Enable();
         _canBeEat = false;
