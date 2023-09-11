@@ -48,7 +48,7 @@ public class AnimatedPacMan : MonoBehaviour
                 return;
             }
 
-            if (this.frame == 13)
+            if (this.frame >= 13)
             {
                 Destroy(this.transform.parent.gameObject);
             }
@@ -58,6 +58,7 @@ public class AnimatedPacMan : MonoBehaviour
             {
                 this.frame = 3;
             };
+            Debug.Log(this.frame);
             this.spriteRenderer.sprite = this.sprites[this.frame];
             
         }

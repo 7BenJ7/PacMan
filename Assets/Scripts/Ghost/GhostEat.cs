@@ -33,7 +33,7 @@ public class GhostEat : MonoBehaviour
             {
                 AudioManager.Instance.PlaySFX("Fantome");
                 GameManager.Instance.ScoreUp(points);
-                GameManager.Instance.fantomes.Remove(GetComponent<GhostController>());
+                GameManager.Instance.ghostInstances.Remove(GetComponent<GhostController>());
                 Destroy(gameObject);
             }
         }

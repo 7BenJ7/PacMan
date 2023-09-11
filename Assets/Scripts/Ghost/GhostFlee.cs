@@ -30,7 +30,6 @@ public class GhostFlee : GhostBehaviour
 
             if (pacman == null)
             {
-                Debug.Log("Fleeeing");
                 newDirections = node.availableDirections;
                 
                 if (newDirections.Count > 1)
@@ -41,7 +40,7 @@ public class GhostFlee : GhostBehaviour
             else 
             {
                 Vector2 pacmanVec = new Vector2(pacman.transform.position.x - this.transform.position.x, pacman.transform.position.y - this.transform.position.y);
-                Debug.Log("" + pacmanVec);
+               
                 if (Mathf.Abs(pacmanVec.x) > Mathf.Abs(pacmanVec.y))
                 {
                     if (pacmanVec.x < 0)

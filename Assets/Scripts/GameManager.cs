@@ -93,7 +93,6 @@ public class GameManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log(_heartsList.Count);
         AudioManager.Instance.PlaySFX("Mort");
         PlayerManager.Instance.gameObject.GetComponentInChildren<AnimatedPacMan>().isDead = true;
         Destroy(_heartsList[^1].gameObject);
@@ -119,7 +118,6 @@ public class GameManager : MonoBehaviour
     
     public void ScoreUp(int scoreAdded)
     {
-        Debug.Log("score up");
         score += scoreAdded;
         scoreText.text = "Score : \n" + score;
     }
