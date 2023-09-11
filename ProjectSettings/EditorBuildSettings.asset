@@ -11,10 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 8218789c383c16047b7be006180422d8
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Benjamin.unity
     guid: 1181d466da331754886ef047981a69aa
   - enabled: 0
     path: Assets/Scenes/Main.unity
     guid: edf7a8856227f7042af945b049a1175e
+  - enabled: 1
+    path: Assets/Scenes/Martin2.unity
+    guid: 4f779984f75c3a447bae3e94c1b8ec37
   m_configObjects: {}

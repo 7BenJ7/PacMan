@@ -11,7 +11,7 @@ public class GhostEat : MonoBehaviour
     private GhostBehaviour ghostBehaviourScript;
     private GhostBehaviour ghostFleeScript;
     private Color _color;
-    private bool _canBeEat = false;
+
 
     private void Start()
     {
