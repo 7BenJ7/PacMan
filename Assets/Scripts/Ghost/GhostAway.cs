@@ -7,10 +7,10 @@ public class GhostAway : GhostBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!enabled) return;
         Node node = other.GetComponent<Node>();
         if (node != null)
         {
-            Debug.Log("Triiiiiiiiigggerr");
             if (node.pacmanDirectionEnter == Vector2.zero)
             {
                 newDirections = node.availableDirections;

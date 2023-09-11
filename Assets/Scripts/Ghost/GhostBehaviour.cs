@@ -36,7 +36,7 @@ public abstract class GhostBehaviour : MonoBehaviour
 
     public IEnumerator ChangeDirection()
     {
-        yield return new WaitForSeconds(0.065f);
+        yield return new WaitForSeconds(0.2f);
         ghost.SetDirection(newDirections[Random.Range(0, newDirections.Count)]); 
     }
 

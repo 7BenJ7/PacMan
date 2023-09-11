@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostFlee : MonoBehaviour
+public class GhostFlee : GhostBehaviour
 {
     private Vector2[] directionHierarchy = new Vector2[4];
 
@@ -10,7 +10,7 @@ public class GhostFlee : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        pacman = GetComponent<GhostController>().pacman;
     }
 
     // Update is called once per frame
@@ -22,6 +22,7 @@ public class GhostFlee : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {   
 
+        if (!enabled) return;
         Node node = other.GetComponent<Node>();
         if (node != null)
         {
@@ -29,7 +30,7 @@ public class GhostFlee : MonoBehaviour
 
             if (pacman == null)
             {
-                Debug.Log("Pacman");
+                Debug.Log("Fleeeing");
                 newDirections = node.availableDirections;
                 
                 if (newDirections.Count > 1)

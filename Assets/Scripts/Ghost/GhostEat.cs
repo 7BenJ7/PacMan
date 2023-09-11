@@ -7,8 +7,15 @@ public class GhostEat : MonoBehaviour
 {
     [SerializeField] private int points;
     
-    private bool _canBeEat = false;
-    
+    public bool _canBeEat = false;
+    private GhostBehaviour ghostBehaviourScript;
+    private GhostBehaviour ghostFleeScript;
+
+    private void Start()
+    {
+        ghostBehaviourScript = GetComponent<GhostController>().ghostBehaviourScript;
+        ghostFleeScript = GetComponent<GhostController>().ghostFleeScript;
+    }
    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.TryGetComponent(out PlayerManager pacman) )
@@ -35,9 +42,17 @@ public class GhostEat : MonoBehaviour
 
    private IEnumerator EatableGhostCoroutine()
     {
+        if (ghostBehaviourScript.enabled)
+        {
+            ghostBehaviourScript.Disable();
+            ghostFleeScript.Enable();
+        }
+
         _canBeEat = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
         yield return new WaitForSeconds(20);
+        ghostFleeScript.Disable();
+        ghostBehaviourScript.Enable();
         _canBeEat = false;
         GetComponentInChildren<SpriteRenderer>().color = Color.red;
     }

@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Fantomes")] 
     public List<GhostController> fantomes;
+    public List<GhostController> ghostInstances;
     
     [Header("HUD")]
     [SerializeField] 
@@ -122,8 +123,17 @@ public class GameManager : MonoBehaviour
     
     public void Spawn()
     {
+        ghostInstances = new List<GhostController>();
         PlayerManager pacmanSpawned = Instantiate(pacman, spawnTransform.position, Quaternion.identity);
         pacmanSpawned.gameObject.SetActive(true);
+        foreach (GhostController ghost in fantomes)
+        {
+            GhostController ghostSpawned = Instantiate(ghost, ghost.transform.position, Quaternion.identity);
+            ghostSpawned.gameObject.SetActive(true);
+            ghostSpawned.gameObject.GetComponent<GhostController>().pacman = pacmanSpawned.gameObject;
+            ghostInstances.Add(ghostSpawned);
+        }
+
     }
 
     public void TakeDamage()
@@ -137,6 +147,10 @@ public class GameManager : MonoBehaviour
             _heartsList.RemoveAt(_heartsList.Count-1);
             //TODO Anim mort
             Destroy(PlayerManager.Instance.gameObject);
+            foreach (GhostController ghost in ghostInstances)
+            {
+                Destroy(ghost.gameObject);
+            }
             StartCoroutine(RespawnCoroutine());
         }
 

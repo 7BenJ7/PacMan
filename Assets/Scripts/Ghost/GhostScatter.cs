@@ -19,6 +19,7 @@ public class GhostScatter : GhostBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        if (!enabled) return;
         Node node = other.GetComponent<Node>();
         if (node != null)
         {

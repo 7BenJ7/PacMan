@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class GhostController : MonoBehaviour
 {
+    public GhostBehaviour ghostBehaviourScript;
+    public GhostBehaviour ghostFleeScript;
+    public GhostBehaviour ghostHomeScript;
 
+    public GameObject pacman;
 
     public int ghostType;
     public Vector2 direction;

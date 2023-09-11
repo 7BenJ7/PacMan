@@ -10,7 +10,7 @@ public class GhostShortcut : GhostBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        pacman = GetComponent<GhostController>().pacman;
     }
 
     // Update is called once per frame
@@ -21,6 +21,7 @@ public class GhostShortcut : GhostBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {   
+        if (!enabled) return;
 
         Node node = other.GetComponent<Node>();
         if (node != null)
@@ -29,7 +30,6 @@ public class GhostShortcut : GhostBehaviour
 
             if (pacman == null)
             {
-                Debug.Log("Pacman");
                 newDirections = node.availableDirections;
                 
                 if (newDirections.Count > 1)

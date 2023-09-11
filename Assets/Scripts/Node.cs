@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
+    public bool isInside;
     public LayerMask obstacleLayer;
     public List<Vector2> availableDirections;
     public Vector2 pacmanDirection;
@@ -13,10 +14,17 @@ public class Node : MonoBehaviour
     void Start()
     {
         availableDirections = new List<Vector2>();
-        CheckAvailableDirection(Vector2.up);
-        CheckAvailableDirection(Vector2.down);
-        CheckAvailableDirection(Vector2.left);
-        CheckAvailableDirection(Vector2.right);
+        if (isInside)
+        {
+            availableDirections.Add(Vector2.up);
+        }
+        else
+        {
+            CheckAvailableDirection(Vector2.up);
+            CheckAvailableDirection(Vector2.down);
+            CheckAvailableDirection(Vector2.left);
+            CheckAvailableDirection(Vector2.right);
+        }
     }
 
     // Update is called once per frame

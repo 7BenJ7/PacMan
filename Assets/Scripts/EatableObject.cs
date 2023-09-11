@@ -27,7 +27,7 @@ public class EatableObject : MonoBehaviour
     {
         if (isGomme)
         {
-            foreach(GhostController fantome in GameManager.Instance.fantomes)
+            foreach(GhostController fantome in GameManager.Instance.ghostInstances)
             {
                 fantome.GetComponent<GhostEat>().IsDamageable();
             }
