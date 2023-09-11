@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -11,11 +12,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Canvas")]
     [SerializeField] 
-    private Canvas menu;
-    [SerializeField] 
     private Canvas hud;
-    [SerializeField] 
-    private Canvas credits;
     [SerializeField] 
     private Canvas gameOver;
     [SerializeField] 
@@ -42,6 +39,7 @@ public class GameManager : MonoBehaviour
     [Header("HUD")]
     [SerializeField] 
     private GameObject hearts;
+    [SerializeField] 
     private List<Image> _heartsList = new List<Image>();
     [SerializeField] 
     private Image heart;
@@ -60,35 +58,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hud.gameObject.SetActive(false);
-        credits.gameObject.SetActive(false);
-        gameOver.gameObject.SetActive(false);
-        win.gameObject.SetActive(false);
-        
-        AudioManager.Instance.PlayMusic("Menu", true);
-    }
-
-    public void StartGame()
-    {
-        menu.gameObject.SetActive(false);
-        credits.gameObject.SetActive(false);
-        gameOver.gameObject.SetActive(false);
-        win.gameObject.SetActive(false);
         hud.gameObject.SetActive(true);
+        gameOver.gameObject.SetActive(false);
+        win.gameObject.SetActive(false);
         
-        _heartsList.Clear();
-        foreach (Image image in hearts.GetComponentsInChildren<Image>())
-        {
-            Destroy(image.gameObject);
-        }
-        for (int i = 0; i < 3; i++)
-        {
-            Image newHeart = Instantiate(heart, Vector3.zero, Quaternion.identity);
-            _heartsList.Add(newHeart);
-            newHeart.transform.SetParent(hearts.transform);
-            newHeart.gameObject.SetActive(true);
-        }
-
         _nbGommes = nbGommesMax;
         
         AudioManager.Instance.StopMusic("Menu");
@@ -96,29 +69,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(StartGameCoroutine());
     }
 
-    public void Quit()
-    {
-        Debug.Log("quit");
-        Application.Quit();
-    }
-
-    public void Credits()
-    {
-        menu.gameObject.SetActive(false);
-        hud.gameObject.SetActive(false);
-        gameOver.gameObject.SetActive(false);
-        win.gameObject.SetActive(false);
-        credits.gameObject.SetActive(true);
-    }
-
-    public void ReturnToMenu()
-    {
-        credits.gameObject.SetActive(false);
-        hud.gameObject.SetActive(false);
-        gameOver.gameObject.SetActive(false);
-        win.gameObject.SetActive(false);
-        menu.gameObject.SetActive(true);
-    }
+   public void ReturnToMenu()
+   {
+       SceneManager.LoadScene("Menu");
+   }
     
     public void Spawn()
     {
@@ -167,12 +121,10 @@ public class GameManager : MonoBehaviour
             winScore.text = "Score : " + score;
             score = 0;
             AudioManager.Instance.PlayMusic("Menu");
-        
-            credits.gameObject.SetActive(false);
+            
             hud.gameObject.SetActive(false);
             gameOver.gameObject.SetActive(false);
             win.gameObject.SetActive(true);
-            menu.gameObject.SetActive(false);
         }
     }
 
@@ -195,10 +147,8 @@ public class GameManager : MonoBehaviour
         score = 0;
         AudioManager.Instance.PlayMusic("Menu");
         
-        credits.gameObject.SetActive(false);
         hud.gameObject.SetActive(false);
         gameOver.gameObject.SetActive(true);
         win.gameObject.SetActive(false);
-        menu.gameObject.SetActive(false);
     }
-    }
+}
