@@ -36,7 +36,7 @@ public class PacMan : MonoBehaviour
         if (this.nextDirection != Vector2.zero){
             SetDirection(this.nextDirection);
         }
-        
+
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow)){
             this.SetDirection(Vector2.up);
         } else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
@@ -67,7 +67,7 @@ public class PacMan : MonoBehaviour
     }
 
     public bool Occupied(Vector2 direction){
-        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 2.0f, this.obstacle);
+        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, this.obstacle);
         return hit.collider != null;
 
     }
