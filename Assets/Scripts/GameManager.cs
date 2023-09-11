@@ -90,16 +90,17 @@ public class GameManager : MonoBehaviour
             Destroy(_heartsList[^1].gameObject);
             _heartsList.RemoveAt(_heartsList.Count-1);
             //TODO Anim mort
-            Destroy(PlayerManager.Instance.gameObject);
+            PlayerManager.Instance.gameObject.GetComponentInChildren<AnimatedPacMan>().isDead = true;
+
             StartCoroutine(RespawnCoroutine());
         }
 
         else
         {
             //TODO Anim mort
+            PlayerManager.Instance.gameObject.GetComponentInChildren<AnimatedPacMan>().isDead = true;
             Destroy(_heartsList[^1].gameObject);
 
-            Destroy(PlayerManager.Instance.gameObject);
             StartCoroutine(DeathCoroutine());
         }
     }

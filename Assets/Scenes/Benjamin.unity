@@ -8113,7 +8113,7 @@ MonoBehaviour:
   win: {fileID: 1463900299}
   looseScore: {fileID: 1502331651}
   winScore: {fileID: 1947113770}
-  nbGommesMax: 252
+  nbGommesMax: 287
   pacman: {fileID: 1287313389}
   spawnTransform: {fileID: 8658079972278374405}
   fantomes:
@@ -12515,6 +12515,54 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3301129ad14e69d438b29ce28a14d170, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 1b2c40a03e092f3468f86287ffe0ae62, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: f4cb69b06c911614ca977ee1094f9f3f, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 477a783ee3779cd47960314d5cce3bbf, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5cf481555d5155041a283ca7d7edcded, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: e4c3904add8acda459efb3bca6ba3309, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: 04f7cf71b97400d429cbaf81e2110e0c, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[10]
+      value: 
+      objectReference: {fileID: 21300000, guid: fb68bb28bbd58c64785b0b4f44060e0a, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[11]
+      value: 
+      objectReference: {fileID: 21300000, guid: 04aef7e931cb5f94aa27de4dfd676880, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[12]
+      value: 
+      objectReference: {fileID: 21300000, guid: d1f0c7d2b3bdf45498624ba1c71f88f8, type: 3}
+    - target: {fileID: 3818203605365416233, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
+      propertyPath: sprites.Array.data[13]
+      value: 
+      objectReference: {fileID: 21300000, guid: 19b29ca7c93023f429f950bb827a21b3, type: 3}
     - target: {fileID: 3962498039971146357, guid: dbf6ab52abb5bdc46841456eb4160e0f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

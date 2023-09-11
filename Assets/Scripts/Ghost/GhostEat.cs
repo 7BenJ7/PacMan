@@ -6,10 +6,15 @@ using UnityEngine;
 public class GhostEat : MonoBehaviour
 {
     [SerializeField] private int points;
-    
+    private Color _color;
     private bool _canBeEat = false;
-    
-   private void OnTriggerEnter2D(Collider2D col)
+
+    private void Start()
+    {
+        _color = GetComponentInChildren<SpriteRenderer>().color;
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.TryGetComponent(out PlayerManager pacman) )
         {
@@ -37,8 +42,8 @@ public class GhostEat : MonoBehaviour
     {
         _canBeEat = true;
         GetComponentInChildren<SpriteRenderer>().color = Color.blue;
-        yield return new WaitForSeconds(20);
+        yield return new WaitForSeconds(5);
         _canBeEat = false;
-        GetComponentInChildren<SpriteRenderer>().color = Color.red;
+        GetComponentInChildren<SpriteRenderer>().color = _color;
     }
 }
