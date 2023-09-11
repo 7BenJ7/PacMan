@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GhostFlee : MonoBehaviour
+public class GhostShortcut : GhostBehaviour
 {
     private Vector2[] directionHierarchy = new Vector2[4];
 
@@ -45,24 +45,24 @@ public class GhostFlee : MonoBehaviour
                 {
                     if (pacmanVec.x < 0)
                     {
-                        directionHierarchy[3] = Vector2.left;
-                        directionHierarchy[0] = Vector2.right;
+                        directionHierarchy[0] = Vector2.left;
+                        directionHierarchy[3] = Vector2.right;
                     }
                     else
                     {
-                        directionHierarchy[3] = Vector2.right;
-                        directionHierarchy[0] = Vector2.left;
+                        directionHierarchy[0] = Vector2.right;
+                        directionHierarchy[3] = Vector2.left;
                     }
 
                     if (pacmanVec.y < 0)
                     {
-                        directionHierarchy[2] = Vector2.down;
-                        directionHierarchy[1] = Vector2.up;
+                        directionHierarchy[1] = Vector2.down;
+                        directionHierarchy[2] = Vector2.up;
                     }
                     else
                     {
-                        directionHierarchy[2] = Vector2.up;
-                        directionHierarchy[1] = Vector2.down; 
+                        directionHierarchy[1] = Vector2.up;
+                        directionHierarchy[2] = Vector2.down; 
                     }
                 }
 
@@ -70,24 +70,24 @@ public class GhostFlee : MonoBehaviour
                 {
                     if (pacmanVec.x < 0)
                     {
-                        directionHierarchy[2] = Vector2.left;
-                        directionHierarchy[1] = Vector2.right;
+                        directionHierarchy[1] = Vector2.left;
+                        directionHierarchy[2] = Vector2.right;
                     }
                     else
                     {
-                        directionHierarchy[2] = Vector2.right;
-                        directionHierarchy[1] = Vector2.left;
+                        directionHierarchy[1] = Vector2.right;
+                        directionHierarchy[2] = Vector2.left;
                     }
 
                     if (pacmanVec.y < 0)
                     {
-                        directionHierarchy[3] = Vector2.down;
-                        directionHierarchy[0] = Vector2.up;
+                        directionHierarchy[0] = Vector2.down;
+                        directionHierarchy[3] = Vector2.up;
                     }
                     else
                     {
-                        directionHierarchy[3] = Vector2.up;
-                        directionHierarchy[0] = Vector2.down; 
+                        directionHierarchy[0] = Vector2.up;
+                        directionHierarchy[3] = Vector2.down; 
                     }
                 }
 
