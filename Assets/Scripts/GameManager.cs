@@ -16,8 +16,21 @@ public class GameManager : MonoBehaviour
     private Canvas hud;
     [SerializeField] 
     private Canvas credits;
+    [SerializeField] 
+    private Canvas gameOver;
+    [SerializeField] 
+    private Canvas win;
+    
+    [Header("Fin de partie")]
+    [SerializeField] 
+    private TMP_Text looseScore;
+    [SerializeField] 
+    private TMP_Text winScore;
+    [SerializeField] 
+    private int nbGommesMax;
+    private int _nbGommes;
 
-    [Header("Pacman")]
+    [Header("Pacman")] 
     [SerializeField] 
     private PlayerManager pacman;
     [SerializeField]
@@ -49,6 +62,8 @@ public class GameManager : MonoBehaviour
     {
         hud.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
+        gameOver.gameObject.SetActive(false);
+        win.gameObject.SetActive(false);
         
         AudioManager.Instance.PlayMusic("Menu", true);
     }
@@ -57,9 +72,15 @@ public class GameManager : MonoBehaviour
     {
         menu.gameObject.SetActive(false);
         credits.gameObject.SetActive(false);
+        gameOver.gameObject.SetActive(false);
+        win.gameObject.SetActive(false);
         hud.gameObject.SetActive(true);
         
         _heartsList.Clear();
+        foreach (Image image in hearts.GetComponentsInChildren<Image>())
+        {
+            Destroy(image.gameObject);
+        }
         for (int i = 0; i < 3; i++)
         {
             Image newHeart = Instantiate(heart, Vector3.zero, Quaternion.identity);
@@ -67,6 +88,8 @@ public class GameManager : MonoBehaviour
             newHeart.transform.SetParent(hearts.transform);
             newHeart.gameObject.SetActive(true);
         }
+
+        _nbGommes = nbGommesMax;
         
         AudioManager.Instance.StopMusic("Menu");
         AudioManager.Instance.PlaySFX("Start");
@@ -83,6 +106,8 @@ public class GameManager : MonoBehaviour
     {
         menu.gameObject.SetActive(false);
         hud.gameObject.SetActive(false);
+        gameOver.gameObject.SetActive(false);
+        win.gameObject.SetActive(false);
         credits.gameObject.SetActive(true);
     }
 
@@ -90,6 +115,8 @@ public class GameManager : MonoBehaviour
     {
         credits.gameObject.SetActive(false);
         hud.gameObject.SetActive(false);
+        gameOver.gameObject.SetActive(false);
+        win.gameObject.SetActive(false);
         menu.gameObject.SetActive(true);
     }
     
@@ -130,6 +157,25 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score : \n" + score;
     }
 
+    public void GommeRestante()
+    {
+        _nbGommes--;
+        
+        if (_nbGommes == 0)
+        {
+            Destroy(PlayerManager.Instance.gameObject);
+            winScore.text = "Score : " + score;
+            score = 0;
+            AudioManager.Instance.PlayMusic("Menu");
+        
+            credits.gameObject.SetActive(false);
+            hud.gameObject.SetActive(false);
+            gameOver.gameObject.SetActive(false);
+            win.gameObject.SetActive(true);
+            menu.gameObject.SetActive(false);
+        }
+    }
+
     private IEnumerator StartGameCoroutine()
     {
         yield return new WaitForSeconds(1f);
@@ -145,8 +191,14 @@ public class GameManager : MonoBehaviour
     private IEnumerator DeathCoroutine()
     {
         yield return new WaitForSeconds(2);
+        looseScore.text = "Score : " + score;
         score = 0;
         AudioManager.Instance.PlayMusic("Menu");
-        ReturnToMenu();
+        
+        credits.gameObject.SetActive(false);
+        hud.gameObject.SetActive(false);
+        gameOver.gameObject.SetActive(true);
+        win.gameObject.SetActive(false);
+        menu.gameObject.SetActive(false);
     }
-}
+    }

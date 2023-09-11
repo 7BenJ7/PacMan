@@ -31,6 +31,12 @@ public class PacMan : MonoBehaviour
 
     // Update is called once per frame
     void Update() {
+
+        
+        if (this.nextDirection != Vector2.zero){
+            SetDirection(this.nextDirection);
+        }
+        
         if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.UpArrow)){
             this.SetDirection(Vector2.up);
         } else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)){
@@ -43,9 +49,6 @@ public class PacMan : MonoBehaviour
         float angle = Mathf.Atan2(this.direction.y, this.direction.x);
         this.transform.rotation = Quaternion.AngleAxis(angle * Mathf.Rad2Deg, Vector3.forward );
 
-        if (this.nextDirection != Vector2.zero){
-            SetDirection(this.nextDirection);
-        }
     }
     private void FixedUpdate()
     {
@@ -64,7 +67,7 @@ public class PacMan : MonoBehaviour
     }
 
     public bool Occupied(Vector2 direction){
-        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 1.5f, this.obstacle);
+        RaycastHit2D hit = Physics2D.BoxCast(this.transform.position, Vector2.one * 0.75f, 0.0f, direction, 2.0f, this.obstacle);
         return hit.collider != null;
 
     }
