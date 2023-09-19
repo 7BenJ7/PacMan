@@ -11,3 +11,6 @@ Pacman se dirige avec les flèches directionelles.
 
 Les sprites viennent du [dépot git](https://github.com/zigurous/unity-pacman-tutorial) de Zigurous.
 Les effets sonores viennent du site intrernet [ClassicGaming](https://www.classicgaming.cc/classics/pac-man/sounds) et de [Pixabay](https://pixabay.com/fr/sound-effects/) 
+
+![Main menu](Menu.png "Main menu")
+![Gameplay](Jeu.png "Gameplay")
