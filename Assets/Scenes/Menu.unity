@@ -13746,7 +13746,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "-----\nProjet r\xE9alis\xE9 dans le cadre du cours de Conception et d\xE9veloppement
-    de jeu vid\xE9o \xE0 l'UCAQ\n-----"
+    de jeu vid\xE9o \xE0 l'UQAC\n-----"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6f71bb665580166498d0d0e70fefe37a, type: 2}
   m_sharedMaterial: {fileID: 2363289379678816992, guid: 6f71bb665580166498d0d0e70fefe37a, type: 2}

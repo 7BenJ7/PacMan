@@ -1,6 +1,6 @@
 # PacMan
 
-Jeu Pacman réalisé dans le cadre du cours de Conception et développement d'un jeu vidéo à l'UCAQ, enseigné par la professeure Sorelle Audrey Kamkuimo. Ce projet a été développé par Pierre Boivent, Benjamin Farigoul, Martin Fond et Nicolas Hall. 
+Jeu Pacman réalisé dans le cadre du cours de Conception et développement d'un jeu vidéo à l'UQAC, enseigné par la professeure Sorelle Audrey Kamkuimo. Ce projet a été développé par Pierre Boivent, Benjamin Farigoul, Martin Fond et Nicolas Hall. 
 
 ## Contrôles
 
